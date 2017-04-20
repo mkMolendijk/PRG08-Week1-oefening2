@@ -18,6 +18,7 @@
 
 ### Tips
 
+- De html heeft een `<container>` element waarin alle game elementen geplaatst worden.
 - Maak eerst de gameobject class.
 - De game loop roept de move functie van de auto en de rots aan. 
 - Als je aan car een verwijzing naar game meegeeft, dan kan car ook functies van game aanroepen, zoals game over.
@@ -25,7 +26,7 @@
 - De rots heeft een snelheid van 0, maar die wordt verhoogd als de auto de rots raakt.
 - De rots staat op x 335, dus als de x van de auto (plus de breedte) 335 is, dan raakt de auto de rots.
 - Als de car zijn eigen speed vermenigvuldigt met 0.9 bereik je een "afremmend" effect: `this.speed *= 0.9`.
-- De auto heeft twee Wheels. Als je de `<wheel>` elementen in het `<car>` element plaatst, bewegen ze vanzelf mee.
+- De auto heeft twee Wheels. Als je de `<wheel>` elementen in het `<car>` element plaatst, in plaats van in `<container>`, dan bewegen ze vanzelf mee met de car.
 
 ## Lezen voor week 2
 - [Classes in Typescript](https://www.typescriptlang.org/docs/handbook/classes.html)
