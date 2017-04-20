@@ -24,7 +24,7 @@
 - De speed van de auto bepaalt hoe veel de auto verplaatst per loop.
 - De rots heeft een snelheid van 0, maar die wordt verhoogd als de auto de rots raakt.
 - De rots staat op x 335, dus als de x van de auto (plus de breedte) 335 is, dan raakt de auto de rots.
-- Als je in de game loop de snelheid van de auto vermenigvuldigt met 0.9 bereik je een "afremmend" effect: `this.speed *= 0.9`.
+- Als de car zijn eigen speed vermenigvuldigt met 0.9 bereik je een "afremmend" effect: `this.speed *= 0.9`.
 - De auto heeft twee Wheels. Als je de `<wheel>` elementen in het `<car>` element plaatst, bewegen ze vanzelf mee.
 
 ## Lezen voor week 2
