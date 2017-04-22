@@ -31,6 +31,7 @@
 ## Lezen voor week 2
 - [Classes in Typescript](https://www.typescriptlang.org/docs/handbook/classes.html)
 - [Interface in Typescript](https://www.typescriptlang.org/docs/handbook/interfaces.html)
+- [Typescript Deep Dive](https://www.gitbook.com/book/basarat/typescript/details)
 - [Arrow functions](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Functions/Arrow_functions)
 - [ES6 For In loops](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...in)
 - [ES6 For Of loops](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Statements/for...of)
