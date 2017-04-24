@@ -19,6 +19,7 @@
 ### Tips
 
 - De html heeft een `<container>` element waarin alle game elementen geplaatst worden.
+- Met CSS plaats je de container in het midden van het scherm.
 - Maak eerst de gameobject class.
 - De game loop roept de move functie van de auto en de rots aan. 
 - Als je aan car een verwijzing naar game meegeeft, dan kan car ook functies van game aanroepen, zoals game over.
@@ -27,6 +28,16 @@
 - De rots staat op x 335, dus als de x van de auto (plus de breedte) 335 is, dan raakt de auto de rots.
 - Als de car zijn eigen speed vermenigvuldigt met 0.9 bereik je een "afremmend" effect: `this.speed *= 0.9`.
 - De auto heeft twee Wheels. Als je de `<wheel>` elementen in het `<car>` element plaatst, in plaats van in `<container>`, dan bewegen ze vanzelf mee met de car.
+```
+<body>
+  <container>
+    <car>
+      <wheel></wheel>
+      <wheel></wheel>
+    </car>
+  </container>
+</body>
+```
 
 ## Lezen
 - [Game Loop, Collision detection, Keyboard input](https://github.com/HR-CMGT/PRG04-Week3-examples)
