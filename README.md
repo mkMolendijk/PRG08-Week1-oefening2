@@ -28,9 +28,9 @@
 - Als de car zijn eigen speed vermenigvuldigt met 0.9 bereik je een "afremmend" effect: `this.speed *= 0.9`.
 - De auto heeft twee Wheels. Als je de `<wheel>` elementen in het `<car>` element plaatst, in plaats van in `<container>`, dan bewegen ze vanzelf mee met de car.
 
-## Lezen voor week 2
+## Lezen
 - [Game Loop, Collision detection, Keyboard input](https://github.com/HR-CMGT/PRG04-Week3-examples)
-- [Classes in Typescript](https://www.typescriptlang.org/docs/handbook/classes.html)
+- [Inheritance in Typescript](https://www.typescriptlang.org/docs/handbook/classes.html)
 - [Interface in Typescript](https://www.typescriptlang.org/docs/handbook/interfaces.html)
 - [Typescript Getting Started](https://basarat.gitbooks.io/typescript/content/docs/getting-started.html)
 - [Arrow functions](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Functions/Arrow_functions)
