@@ -29,11 +29,10 @@
 - De auto heeft twee Wheels. Als je de `<wheel>` elementen in het `<car>` element plaatst, in plaats van in `<container>`, dan bewegen ze vanzelf mee met de car.
 
 ## Lezen voor week 2
+- [Game Loop, Collision detection, Keyboard input](https://github.com/HR-CMGT/PRG04-Week3-examples)
 - [Classes in Typescript](https://www.typescriptlang.org/docs/handbook/classes.html)
 - [Interface in Typescript](https://www.typescriptlang.org/docs/handbook/interfaces.html)
-- [Typescript Deep Dive](https://www.gitbook.com/book/basarat/typescript/details)
+- [Typescript Getting Started](https://basarat.gitbooks.io/typescript/content/docs/getting-started.html)
 - [Arrow functions](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Functions/Arrow_functions)
 - [ES6 For In loops](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...in)
 - [ES6 For Of loops](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Statements/for...of)
-- [Typescript Namespaces](https://www.typescriptlang.org/docs/handbook/namespaces.html)
-- [Game Loop, Collision detection, Keyboard input](https://github.com/HR-CMGT/PRG04-Week3-examples)
