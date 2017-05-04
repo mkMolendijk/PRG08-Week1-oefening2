@@ -39,6 +39,16 @@
 </body>
 ```
 
+### Keyboard Input
+```
+constructor(){
+   window.addEventListener("keydown", (e:KeyboardEvent) => this.onKeyDown(e));
+}
+private onKeyDown(event:KeyboardEvent):void {
+   console.log(event.keyCode);
+}       
+```
+
 ## Lezen
 - [Game Loop, Collision detection, Keyboard input](https://github.com/HR-CMGT/PRG04-Week3-examples)
 - [Inheritance in Typescript](https://www.typescriptlang.org/docs/handbook/classes.html)
