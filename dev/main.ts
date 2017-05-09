@@ -2,6 +2,7 @@
 
 class Game {
 
+    private static GameInstance: Game;
     private car : Car;
     
     constructor() {
@@ -16,10 +17,15 @@ class Game {
     public endGame(){
         document.getElementById("score").innerHTML = "Score : 0";
     }
+    
+    public static getInstance() {
+        if (! Game.GameInstance) {
+            Game.GameInstance = new Game();
+        }
+        return Game.GameInstance;
+    }
 } 
-
-
 // load
 window.addEventListener("load", function() {
-    new Game();
+    Game.getInstance();
 });
