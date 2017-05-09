@@ -1,17 +1,19 @@
 /// <reference path="wheel.ts"/>
+/// <reference path="gameObject.ts"/>
 
-class Car {
+class Car extends gameObject {
 
     private speed:number;
-    private div:HTMLElement;
     private braking:boolean;
             
     constructor() {
-        // het DOM element waar de div in geplaatst wordt:
-        let container:HTMLElement = document.getElementById("container");
+        super("car", 0, 0);
 
-        this.div = document.createElement("car");
-        container.appendChild(this.div);
+        // het DOM element waar de div in geplaatst wordt:
+        // let container:HTMLElement = document.getElementById("container");
+
+        // this.div = document.createElement("car");
+        // container.appendChild(this.div);
 
         this.speed = 4;
 
