@@ -18,9 +18,9 @@ var Wheel = (function () {
     return Wheel;
 }());
 var gameObject = (function () {
-    function gameObject(str, x, y) {
-        var container = document.getElementById("container");
+    function gameObject(str, parent, x, y) {
         this.div = document.createElement(str);
+        parent.appendChild(this.div);
         this.x = x;
         this.y = y;
         this.draw();
@@ -32,26 +32,28 @@ var gameObject = (function () {
 }());
 var Car = (function (_super) {
     __extends(Car, _super);
-    function Car() {
-        var _this = _super.call(this, "car", 0, 0) || this;
+    function Car(parent) {
+        var _this = _super.call(this, "car", parent, 0, 210) || this;
         _this.speed = 4;
         _this.move();
         return _this;
     }
     Car.prototype.move = function () {
-        this.div.style.transform = "translate(200px,220px)";
+        this.x += this.speed;
+        this.div.style.transform = "translate(" + this.x + "px," + this.y + "px)";
     };
     return Car;
 }(gameObject));
 var Game = (function () {
     function Game() {
         var _this = this;
-        this.car = new Car();
+        var container = document.getElementById("container");
+        this.car = new Car(container);
         requestAnimationFrame(function () { return _this.gameLoop(); });
     }
     Game.prototype.gameLoop = function () {
         var _this = this;
-        this.car.move;
+        this.car.move();
         requestAnimationFrame(function () { return _this.gameLoop(); });
     };
     Game.prototype.endGame = function () {
@@ -66,7 +68,7 @@ var Game = (function () {
     return Game;
 }());
 window.addEventListener("load", function () {
-    Game.getInstance();
+    var g = Game.getInstance();
 });
 var Rock = (function () {
     function Rock(tag, parent) {

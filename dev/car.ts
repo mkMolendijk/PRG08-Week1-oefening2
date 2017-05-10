@@ -6,8 +6,8 @@ class Car extends gameObject {
     private speed:number;
     private braking:boolean;
             
-    constructor() {
-        super("car", 0, 0);
+    constructor(parent: HTMLElement) {
+        super("car", parent, 0, 210);
 
         // het DOM element waar de div in geplaatst wordt:
         // let container:HTMLElement = document.getElementById("container");
@@ -33,10 +33,10 @@ class Car extends gameObject {
         //
 
         // de snelheid bij de x waarde optellen
-        //
-        
+        this.x += this.speed;
+
         // tekenen
-        this.div.style.transform ="translate(200px,220px)";
+        this.div.style.transform = "translate(" + this.x + "px," + this.y + "px)";
     } 
 
     //

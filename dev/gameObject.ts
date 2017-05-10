@@ -4,10 +4,11 @@ class gameObject {
     public x: number;
     public y: number;
 
-    constructor(str: string, x: number, y: number) {
-        let container:HTMLElement = document.getElementById("container");
-
+    constructor(str: string, parent: HTMLElement, x: number, y: number) {
+        //let container:HTMLElement = document.getElementById("container");
+        
         this.div = document.createElement(str);
+        parent.appendChild(this.div);
 
         this.x = x;
         this.y = y;

@@ -6,12 +6,14 @@ class Game {
     private car : Car;
     
     constructor() {
-        this.car = new Car();
+        let container:HTMLElement = document.getElementById("container");
+
+        this.car = new Car(container);
         requestAnimationFrame(() => this.gameLoop());
     }
 
     private gameLoop(){
-        this.car.move;
+        this.car.move();
         requestAnimationFrame(() => this.gameLoop());
     }
 
@@ -28,5 +30,5 @@ class Game {
 } 
 // load
 window.addEventListener("load", function() {
-    Game.getInstance();
+    let g = Game.getInstance();
 });
