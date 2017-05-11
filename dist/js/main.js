@@ -109,7 +109,8 @@ window.addEventListener("load", function () {
 var Utils = (function () {
     function Utils() {
     }
-    Utils.prototype.checkCollision = function (car, rock) {
+    Utils.checkCollision = function (go1, go2) {
+        return;
     };
     return Utils;
 }());
