@@ -1,13 +1,16 @@
 /// <reference path="wheel.ts"/>
 /// <reference path="gameObject.ts"/>
 
-class Car extends gameObject {
+class Car extends GameObject {
 
     private speed:number;
     private braking:boolean;
+
+    private wheel1:Wheel;
+    private wheel2:Wheel;
             
     constructor(parent: HTMLElement) {
-        super("car", parent, 0, 210);
+        super("car", parent, 0, 220);
 
         // het DOM element waar de div in geplaatst wordt:
         // let container:HTMLElement = document.getElementById("container");
@@ -22,6 +25,8 @@ class Car extends gameObject {
         window.addEventListener("keydown", (e:KeyboardEvent) => this.onKeyDown(e));
 
         // alvast goed zetten
+        this.wheel1 = new Wheel(this.div, 15, 30);
+        this.wheel2 = new Wheel(this.div, 105, 30);
 
         this.move();
     }

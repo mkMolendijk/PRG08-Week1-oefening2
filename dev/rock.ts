@@ -1,11 +1,11 @@
 /// <reference path="gameObject.ts"/>
 
-class Rock extends gameObject{
+class Rock extends GameObject{
 
     private speed:number;
                         
     constructor(parent:HTMLElement) {
-        super("rock", parent, 0, 355);
+        super("rock", parent, 490, 210);
 
         this.speed = 0;
         this.move();

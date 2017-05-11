@@ -8,34 +8,34 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-var Wheel = (function () {
-    function Wheel() {
-        var container = document.getElementById("container");
-        var div = document.createElement("wheel");
-        container.appendChild(div);
-        div.style.transform = "translate(0px, 30px)";
-    }
-    return Wheel;
-}());
-var gameObject = (function () {
-    function gameObject(str, parent, x, y) {
+var GameObject = (function () {
+    function GameObject(str, parent, x, y) {
         this.div = document.createElement(str);
         parent.appendChild(this.div);
         this.x = x;
         this.y = y;
         this.draw();
     }
-    gameObject.prototype.draw = function () {
+    GameObject.prototype.draw = function () {
         this.div.style.transform = "translate(" + this.x + "px," + this.y + "px)";
     };
-    return gameObject;
+    return GameObject;
 }());
+var Wheel = (function (_super) {
+    __extends(Wheel, _super);
+    function Wheel(parent, x, y) {
+        return _super.call(this, "wheel", parent, x, y) || this;
+    }
+    return Wheel;
+}(GameObject));
 var Car = (function (_super) {
     __extends(Car, _super);
     function Car(parent) {
-        var _this = _super.call(this, "car", parent, 0, 210) || this;
+        var _this = _super.call(this, "car", parent, 0, 220) || this;
         _this.speed = 4;
         window.addEventListener("keydown", function (e) { return _this.onKeyDown(e); });
+        _this.wheel1 = new Wheel(_this.div, 15, 30);
+        _this.wheel2 = new Wheel(_this.div, 105, 30);
         _this.move();
         return _this;
     }
@@ -55,20 +55,19 @@ var Car = (function (_super) {
         }
     };
     return Car;
-}(gameObject));
+}(GameObject));
 var Rock = (function (_super) {
     __extends(Rock, _super);
     function Rock(parent) {
-        var _this = _super.call(this, "rock", parent, 0, 355) || this;
+        var _this = _super.call(this, "rock", parent, 490, 210) || this;
         _this.speed = 0;
         _this.move();
         return _this;
     }
     Rock.prototype.move = function () {
-        this.div.style.transform = "translate(490px,210px)";
     };
     return Rock;
-}(gameObject));
+}(GameObject));
 var Game = (function () {
     function Game() {
         var _this = this;
