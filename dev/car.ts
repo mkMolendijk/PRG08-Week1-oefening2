@@ -41,9 +41,7 @@ class Car extends GameObject {
         }
 
         // hier kijken of de x waarde hoger is dan de x van de rots (335)
-        //
-        // if(this.x + this.width > )
-        
+        //        
 
         // de snelheid bij de x waarde optellen
         this.x += this.speed;

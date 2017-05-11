@@ -20,8 +20,8 @@ class Game {
         this.rock.move();
 
         if(this.car.x + this.car.width >= this.rock.x){
-            console.log("Biem");
-            this.rock.setSpeed(5);
+           console.log("Biem");
+           this.rock.setSpeed(5);
         }
 
 
