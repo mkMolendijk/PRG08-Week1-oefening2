@@ -18,6 +18,13 @@ class Game {
     private gameLoop(){
         this.car.move();
         this.rock.move();
+
+        if(this.car.x + this.car.width >= this.rock.x){
+            console.log("Biem");
+            this.rock.setSpeed(5);
+        }
+
+
         requestAnimationFrame(() => this.gameLoop());
     }
 

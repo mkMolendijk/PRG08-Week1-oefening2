@@ -33,6 +33,7 @@ var Car = (function (_super) {
     function Car(parent) {
         var _this = _super.call(this, "car", parent, 0, 220) || this;
         _this.speed = 4;
+        _this.width = 145;
         window.addEventListener("keydown", function (e) { return _this.onKeyDown(e); });
         _this.wheel1 = new Wheel(_this.div, 15, 30);
         _this.wheel2 = new Wheel(_this.div, 105, 30);
@@ -65,6 +66,11 @@ var Rock = (function (_super) {
         return _this;
     }
     Rock.prototype.move = function () {
+        this.x += this.speed;
+        this.div.style.transform = "translate(" + this.x + "px," + this.y + "px)";
+    };
+    Rock.prototype.setSpeed = function (speed) {
+        this.speed = speed;
     };
     return Rock;
 }(GameObject));
@@ -80,6 +86,10 @@ var Game = (function () {
         var _this = this;
         this.car.move();
         this.rock.move();
+        if (this.car.x + this.car.width >= this.rock.x) {
+            console.log("Biem");
+            this.rock.setSpeed(5);
+        }
         requestAnimationFrame(function () { return _this.gameLoop(); });
     };
     Game.prototype.endGame = function () {
@@ -96,4 +106,11 @@ var Game = (function () {
 window.addEventListener("load", function () {
     var g = Game.getInstance();
 });
+var Utils = (function () {
+    function Utils() {
+    }
+    Utils.prototype.checkCollision = function (car, rock) {
+    };
+    return Utils;
+}());
 //# sourceMappingURL=main.js.map

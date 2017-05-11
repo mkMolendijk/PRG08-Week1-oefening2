@@ -5,6 +5,7 @@ class Car extends GameObject {
 
     private speed:number;
     private braking:boolean;
+    public width:number;
 
     private wheel1:Wheel;
     private wheel2:Wheel;
@@ -19,12 +20,12 @@ class Car extends GameObject {
         // container.appendChild(this.div);
 
         this.speed = 4;
+        this.width = 145;
 
         // hier een keypress event listener toevoegen. een keypress zorgt dat braking true wordt
         //
         window.addEventListener("keydown", (e:KeyboardEvent) => this.onKeyDown(e));
 
-        // alvast goed zetten
         this.wheel1 = new Wheel(this.div, 15, 30);
         this.wheel2 = new Wheel(this.div, 105, 30);
 
@@ -41,6 +42,8 @@ class Car extends GameObject {
 
         // hier kijken of de x waarde hoger is dan de x van de rots (335)
         //
+        // if(this.x + this.width > )
+        
 
         // de snelheid bij de x waarde optellen
         this.x += this.speed;
