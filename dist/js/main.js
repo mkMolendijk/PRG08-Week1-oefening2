@@ -35,25 +35,52 @@ var Car = (function (_super) {
     function Car(parent) {
         var _this = _super.call(this, "car", parent, 0, 210) || this;
         _this.speed = 4;
+        window.addEventListener("keydown", function (e) { return _this.onKeyDown(e); });
         _this.move();
         return _this;
     }
     Car.prototype.move = function () {
+        if (this.braking) {
+            this.speed *= 0.9;
+        }
         this.x += this.speed;
         this.div.style.transform = "translate(" + this.x + "px," + this.y + "px)";
     };
+    Car.prototype.onKeyDown = function (event) {
+        console.log(event.keyCode);
+        switch (event.keyCode) {
+            case 40:
+                this.braking = true;
+                break;
+        }
+    };
     return Car;
+}(gameObject));
+var Rock = (function (_super) {
+    __extends(Rock, _super);
+    function Rock(parent) {
+        var _this = _super.call(this, "rock", parent, 0, 355) || this;
+        _this.speed = 0;
+        _this.move();
+        return _this;
+    }
+    Rock.prototype.move = function () {
+        this.div.style.transform = "translate(490px,210px)";
+    };
+    return Rock;
 }(gameObject));
 var Game = (function () {
     function Game() {
         var _this = this;
         var container = document.getElementById("container");
         this.car = new Car(container);
+        this.rock = new Rock(container);
         requestAnimationFrame(function () { return _this.gameLoop(); });
     }
     Game.prototype.gameLoop = function () {
         var _this = this;
         this.car.move();
+        this.rock.move();
         requestAnimationFrame(function () { return _this.gameLoop(); });
     };
     Game.prototype.endGame = function () {
@@ -70,13 +97,4 @@ var Game = (function () {
 window.addEventListener("load", function () {
     var g = Game.getInstance();
 });
-var Rock = (function () {
-    function Rock(tag, parent) {
-        this.speed = 0;
-        this.move();
-    }
-    Rock.prototype.move = function () {
-    };
-    return Rock;
-}());
 //# sourceMappingURL=main.js.map

@@ -1,8 +1,12 @@
-class Rock {
+/// <reference path="gameObject.ts"/>
+
+class Rock extends gameObject{
 
     private speed:number;
                         
-    constructor(tag:string, parent:HTMLElement) {
+    constructor(parent:HTMLElement) {
+        super("rock", parent, 0, 355);
+
         this.speed = 0;
         this.move();
     }
@@ -13,6 +17,6 @@ class Rock {
         // speed wordt hoger dan 0 zodra de auto de rots raakt
         
         //teken de div op de juiste positie
-        //this.div.style.transform ="translate(490px,210px)";     
+        // this.div.style.transform ="translate(490px,210px)";     
     }
 }

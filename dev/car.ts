@@ -19,6 +19,7 @@ class Car extends gameObject {
 
         // hier een keypress event listener toevoegen. een keypress zorgt dat braking true wordt
         //
+        window.addEventListener("keydown", (e:KeyboardEvent) => this.onKeyDown(e));
 
         // alvast goed zetten
 
@@ -28,6 +29,10 @@ class Car extends gameObject {
     public move():void {
         // hier de snelheid verlagen als we aan het afremmen zijn
         //
+
+        if(this.braking) {
+            this.speed *= 0.9;
+        }
 
         // hier kijken of de x waarde hoger is dan de x van de rots (335)
         //
@@ -42,4 +47,12 @@ class Car extends gameObject {
     //
     // hier een method maken voor on key press
     //
+    private onKeyDown(event:KeyboardEvent):void {
+        console.log(event.keyCode);
+        switch(event.keyCode){
+            case 40: 
+                this.braking = true;
+                break;
+        }
+    } 
 }
