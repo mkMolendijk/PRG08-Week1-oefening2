@@ -4,14 +4,22 @@
 class Game {
 
     private static GameInstance: Game;
+    private container : HTMLElement;
     private car : Car;
     private rock: Rock;
+    private score: Number;
+    private scoreCalculated: boolean;
     
     constructor() {
-        let container:HTMLElement = document.getElementById("container");
+        // let container: HTMLElement = document.getElementById("container");
+        this.container = document.getElementById("container");
 
-        this.car = new Car(container);
-        this.rock = new Rock(container);
+
+        this.car = new Car(this.container);
+        this.rock = new Rock(this.container);
+        this.scoreCalculated = false;
+        this.score = 0;
+
         requestAnimationFrame(() => this.gameLoop());
     }
 
@@ -24,6 +32,18 @@ class Game {
            this.rock.setSpeed(5);
         }
 
+        if (this.car.speed <= 0 && !this.scoreCalculated){
+            if (this.rock.hasBeenHit) {
+                console.log(`Score: 0`);
+                this.scoreCalculated = true;
+                this.container.innerHTML = "Score:"+String(this.score);
+            } else {
+                this.score = Math.round((61250 / 43) - ((125 * (this.rock.x - this.car.x)) / 43));
+                console.log(`Score: ${this.score}`);
+                this.scoreCalculated = true;
+                this.container.innerHTML = "Score:"+String(this.score);
+            }
+        }
 
         requestAnimationFrame(() => this.gameLoop());
     }

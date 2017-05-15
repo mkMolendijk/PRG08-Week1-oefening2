@@ -3,7 +3,7 @@
 
 class Car extends GameObject {
 
-    private speed:number;
+    public speed:number;
     private braking:boolean;
     public width:number;
 

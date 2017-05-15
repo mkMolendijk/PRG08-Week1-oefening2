@@ -3,6 +3,7 @@
 class Rock extends GameObject{
 
     private speed:number;
+    public hasBeenHit: Boolean;
                         
     constructor(parent:HTMLElement) {
         super("rock", parent, 490, 210);
@@ -23,10 +24,15 @@ class Rock extends GameObject{
         this.x += this.speed;
 
         // tekenen
-        this.div.style.transform = "translate(" + this.x + "px," + this.y + "px)";   
+        this.div.style.transform = "translate(" + this.x + "px," + this.y + "px)"; 
+          
     }
 
     public setSpeed(speed: number): void {
         this.speed = speed;
+    }
+
+    public rockMove(){
+        this.hasBeenHit = true;
     }
 }

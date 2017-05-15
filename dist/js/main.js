@@ -72,14 +72,19 @@ var Rock = (function (_super) {
     Rock.prototype.setSpeed = function (speed) {
         this.speed = speed;
     };
+    Rock.prototype.rockMove = function () {
+        this.hasBeenHit = true;
+    };
     return Rock;
 }(GameObject));
 var Game = (function () {
     function Game() {
         var _this = this;
-        var container = document.getElementById("container");
-        this.car = new Car(container);
-        this.rock = new Rock(container);
+        this.container = document.getElementById("container");
+        this.car = new Car(this.container);
+        this.rock = new Rock(this.container);
+        this.scoreCalculated = false;
+        this.score = 0;
         requestAnimationFrame(function () { return _this.gameLoop(); });
     }
     Game.prototype.gameLoop = function () {
@@ -89,6 +94,19 @@ var Game = (function () {
         if (this.car.x + this.car.width >= this.rock.x) {
             console.log("Biem");
             this.rock.setSpeed(5);
+        }
+        if (this.car.speed <= 0 && !this.scoreCalculated) {
+            if (this.rock.hasBeenHit) {
+                console.log("Score: 0");
+                this.scoreCalculated = true;
+                this.container.innerHTML = "Score:" + String(this.score);
+            }
+            else {
+                this.score = Math.round((61250 / 43) - ((125 * (this.rock.x - this.car.x)) / 43));
+                console.log("Score: " + this.score);
+                this.scoreCalculated = true;
+                this.container.innerHTML = "Score:" + String(this.score);
+            }
         }
         requestAnimationFrame(function () { return _this.gameLoop(); });
     };
