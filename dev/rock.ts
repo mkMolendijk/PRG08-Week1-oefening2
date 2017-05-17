@@ -32,7 +32,4 @@ class Rock extends GameObject{
         this.speed = speed;
     }
 
-    public rockMove(){
-        this.hasBeenHit = true;
-    }
 }

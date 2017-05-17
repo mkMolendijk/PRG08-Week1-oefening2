@@ -8,7 +8,6 @@ class Game {
     private car : Car;
     private rock: Rock;
     private score: Number;
-    private scoreCalculated: boolean;
     
     constructor() {
         // let container: HTMLElement = document.getElementById("container");
@@ -17,7 +16,6 @@ class Game {
 
         this.car = new Car(this.container);
         this.rock = new Rock(this.container);
-        this.scoreCalculated = false;
         this.score = 0;
 
         requestAnimationFrame(() => this.gameLoop());
@@ -30,26 +28,22 @@ class Game {
         if(this.car.x + this.car.width >= this.rock.x){
            console.log("Biem");
            this.rock.setSpeed(5);
-        }
+           this.car.setSpeed(0);
 
-        if (this.car.speed <= 0 && !this.scoreCalculated){
-            if (this.rock.hasBeenHit) {
-                console.log(`Score: 0`);
-                this.scoreCalculated = true;
-                this.container.innerHTML = "Score:"+String(this.score);
-            } else {
-                this.score = Math.round((61250 / 43) - ((125 * (this.rock.x - this.car.x)) / 43));
-                console.log(`Score: ${this.score}`);
-                this.scoreCalculated = true;
-                this.container.innerHTML = "Score:"+String(this.score);
-            }
+           this.score = 0;
+
+           this.endGame();
         }
 
         requestAnimationFrame(() => this.gameLoop());
     }
 
+    public setScore(s: number){
+        this.score = Math.round(s);
+    }
+
     public endGame(){
-        document.getElementById("score").innerHTML = "Score : 0";
+        document.getElementById("score").innerHTML = "Score : " + this.score;
     }
     
     public static getInstance() {

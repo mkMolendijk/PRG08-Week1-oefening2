@@ -1,5 +1,7 @@
 /// <reference path="wheel.ts"/>
 /// <reference path="gameObject.ts"/>
+/// <reference path="main.ts"/>
+
 
 class Car extends GameObject {
 
@@ -9,7 +11,7 @@ class Car extends GameObject {
 
     private wheel1:Wheel;
     private wheel2:Wheel;
-            
+
     constructor(parent: HTMLElement) {
         super("car", parent, 0, 220);
 
@@ -38,6 +40,11 @@ class Car extends GameObject {
 
         if(this.braking) {
             this.speed *= 0.9;
+
+            let g: Game = Game.getInstance();
+
+            g.setScore(this.x);
+            g.endGame();
         }
 
         // hier kijken of de x waarde hoger is dan de x van de rots (335)
@@ -49,6 +56,10 @@ class Car extends GameObject {
         // tekenen
         this.div.style.transform = "translate(" + this.x + "px," + this.y + "px)";
     } 
+
+    public setSpeed(s: number):void {
+        this.speed = s;
+    }
 
     //
     // hier een method maken voor on key press

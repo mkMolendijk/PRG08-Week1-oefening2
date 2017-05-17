@@ -28,35 +28,6 @@ var Wheel = (function (_super) {
     }
     return Wheel;
 }(GameObject));
-var Car = (function (_super) {
-    __extends(Car, _super);
-    function Car(parent) {
-        var _this = _super.call(this, "car", parent, 0, 220) || this;
-        _this.speed = 4;
-        _this.width = 145;
-        window.addEventListener("keydown", function (e) { return _this.onKeyDown(e); });
-        _this.wheel1 = new Wheel(_this.div, 15, 30);
-        _this.wheel2 = new Wheel(_this.div, 105, 30);
-        _this.move();
-        return _this;
-    }
-    Car.prototype.move = function () {
-        if (this.braking) {
-            this.speed *= 0.9;
-        }
-        this.x += this.speed;
-        this.div.style.transform = "translate(" + this.x + "px," + this.y + "px)";
-    };
-    Car.prototype.onKeyDown = function (event) {
-        console.log(event.keyCode);
-        switch (event.keyCode) {
-            case 40:
-                this.braking = true;
-                break;
-        }
-    };
-    return Car;
-}(GameObject));
 var Rock = (function (_super) {
     __extends(Rock, _super);
     function Rock(parent) {
@@ -72,9 +43,6 @@ var Rock = (function (_super) {
     Rock.prototype.setSpeed = function (speed) {
         this.speed = speed;
     };
-    Rock.prototype.rockMove = function () {
-        this.hasBeenHit = true;
-    };
     return Rock;
 }(GameObject));
 var Game = (function () {
@@ -83,7 +51,6 @@ var Game = (function () {
         this.container = document.getElementById("container");
         this.car = new Car(this.container);
         this.rock = new Rock(this.container);
-        this.scoreCalculated = false;
         this.score = 0;
         requestAnimationFrame(function () { return _this.gameLoop(); });
     }
@@ -94,24 +61,17 @@ var Game = (function () {
         if (this.car.x + this.car.width >= this.rock.x) {
             console.log("Biem");
             this.rock.setSpeed(5);
-        }
-        if (this.car.speed <= 0 && !this.scoreCalculated) {
-            if (this.rock.hasBeenHit) {
-                console.log("Score: 0");
-                this.scoreCalculated = true;
-                this.container.innerHTML = "Score:" + String(this.score);
-            }
-            else {
-                this.score = Math.round((61250 / 43) - ((125 * (this.rock.x - this.car.x)) / 43));
-                console.log("Score: " + this.score);
-                this.scoreCalculated = true;
-                this.container.innerHTML = "Score:" + String(this.score);
-            }
+            this.car.setSpeed(0);
+            this.score = 0;
+            this.endGame();
         }
         requestAnimationFrame(function () { return _this.gameLoop(); });
     };
+    Game.prototype.setScore = function (s) {
+        this.score = Math.round(s);
+    };
     Game.prototype.endGame = function () {
-        document.getElementById("score").innerHTML = "Score : 0";
+        document.getElementById("score").innerHTML = "Score : " + this.score;
     };
     Game.getInstance = function () {
         if (!Game.GameInstance) {
@@ -124,6 +84,41 @@ var Game = (function () {
 window.addEventListener("load", function () {
     var g = Game.getInstance();
 });
+var Car = (function (_super) {
+    __extends(Car, _super);
+    function Car(parent) {
+        var _this = _super.call(this, "car", parent, 0, 220) || this;
+        _this.speed = 4;
+        _this.width = 145;
+        window.addEventListener("keydown", function (e) { return _this.onKeyDown(e); });
+        _this.wheel1 = new Wheel(_this.div, 15, 30);
+        _this.wheel2 = new Wheel(_this.div, 105, 30);
+        _this.move();
+        return _this;
+    }
+    Car.prototype.move = function () {
+        if (this.braking) {
+            this.speed *= 0.9;
+            var g = Game.getInstance();
+            g.setScore(this.x);
+            g.endGame();
+        }
+        this.x += this.speed;
+        this.div.style.transform = "translate(" + this.x + "px," + this.y + "px)";
+    };
+    Car.prototype.setSpeed = function (s) {
+        this.speed = s;
+    };
+    Car.prototype.onKeyDown = function (event) {
+        console.log(event.keyCode);
+        switch (event.keyCode) {
+            case 40:
+                this.braking = true;
+                break;
+        }
+    };
+    return Car;
+}(GameObject));
 var Utils = (function () {
     function Utils() {
     }
