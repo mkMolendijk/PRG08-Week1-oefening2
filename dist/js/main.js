@@ -9,11 +9,13 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 var GameObject = (function () {
-    function GameObject(str, parent, x, y) {
+    function GameObject(str, parent, x, y, width, height) {
         this.div = document.createElement(str);
         parent.appendChild(this.div);
         this.x = x;
         this.y = y;
+        this.width = width;
+        this.height = height;
         this.draw();
     }
     GameObject.prototype.draw = function () {
@@ -23,15 +25,15 @@ var GameObject = (function () {
 }());
 var Wheel = (function (_super) {
     __extends(Wheel, _super);
-    function Wheel(parent, x, y) {
-        return _super.call(this, "wheel", parent, x, y) || this;
+    function Wheel(parent, x, y, width, height) {
+        return _super.call(this, "wheel", parent, x, y, width, height) || this;
     }
     return Wheel;
 }(GameObject));
 var Rock = (function (_super) {
     __extends(Rock, _super);
     function Rock(parent) {
-        var _this = _super.call(this, "rock", parent, 490, 210) || this;
+        var _this = _super.call(this, "rock", parent, 490, 210, 62, 62) || this;
         _this.speed = 0;
         _this.move();
         return _this;
@@ -45,6 +47,17 @@ var Rock = (function (_super) {
     };
     return Rock;
 }(GameObject));
+var Utils = (function () {
+    function Utils() {
+    }
+    Utils.checkCollision = function (instance1, instance2) {
+        return (instance1.x < instance2.x + instance2.width &&
+            instance1.x + instance1.width > instance2.x &&
+            instance1.y < instance2.y + instance2.height &&
+            instance1.height + instance1.y > instance2.y);
+    };
+    return Utils;
+}());
 var Game = (function () {
     function Game() {
         var _this = this;
@@ -58,7 +71,7 @@ var Game = (function () {
         var _this = this;
         this.car.move();
         this.rock.move();
-        if (this.car.x + this.car.width >= this.rock.x) {
+        if (Utils.checkCollision(this.car, this.rock)) {
             console.log("Biem");
             this.rock.setSpeed(5);
             this.car.setSpeed(0);
@@ -87,12 +100,11 @@ window.addEventListener("load", function () {
 var Car = (function (_super) {
     __extends(Car, _super);
     function Car(parent) {
-        var _this = _super.call(this, "car", parent, 0, 220) || this;
+        var _this = _super.call(this, "car", parent, 0, 220, 145, 45) || this;
         _this.speed = 4;
-        _this.width = 145;
         window.addEventListener("keydown", function (e) { return _this.onKeyDown(e); });
-        _this.wheel1 = new Wheel(_this.div, 15, 30);
-        _this.wheel2 = new Wheel(_this.div, 105, 30);
+        _this.wheel1 = new Wheel(_this.div, 15, 30, 22, 22);
+        _this.wheel2 = new Wheel(_this.div, 105, 30, 22, 22);
         _this.move();
         return _this;
     }
@@ -119,12 +131,4 @@ var Car = (function (_super) {
     };
     return Car;
 }(GameObject));
-var Utils = (function () {
-    function Utils() {
-    }
-    Utils.checkCollision = function (go1, go2) {
-        return;
-    };
-    return Utils;
-}());
 //# sourceMappingURL=main.js.map

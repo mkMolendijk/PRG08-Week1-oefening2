@@ -7,13 +7,12 @@ class Car extends GameObject {
 
     public speed:number;
     private braking:boolean;
-    public width:number;
 
     private wheel1:Wheel;
     private wheel2:Wheel;
 
     constructor(parent: HTMLElement) {
-        super("car", parent, 0, 220);
+        super("car", parent, 0, 220, 145, 45);
 
         // het DOM element waar de div in geplaatst wordt:
         // let container:HTMLElement = document.getElementById("container");
@@ -22,14 +21,13 @@ class Car extends GameObject {
         // container.appendChild(this.div);
 
         this.speed = 4;
-        this.width = 145;
 
         // hier een keypress event listener toevoegen. een keypress zorgt dat braking true wordt
         //
         window.addEventListener("keydown", (e:KeyboardEvent) => this.onKeyDown(e));
 
-        this.wheel1 = new Wheel(this.div, 15, 30);
-        this.wheel2 = new Wheel(this.div, 105, 30);
+        this.wheel1 = new Wheel(this.div, 15, 30, 22, 22);
+        this.wheel2 = new Wheel(this.div, 105, 30, 22, 22);
 
         this.move();
     }

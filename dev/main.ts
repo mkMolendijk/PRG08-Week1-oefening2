@@ -1,5 +1,7 @@
 /// <reference path="car.ts"/>
 /// <reference path="rock.ts"/>
+/// <reference path="utils.ts"/>
+
 
 class Game {
 
@@ -25,14 +27,15 @@ class Game {
         this.car.move();
         this.rock.move();
 
-        if(this.car.x + this.car.width >= this.rock.x){
-           console.log("Biem");
-           this.rock.setSpeed(5);
-           this.car.setSpeed(0);
+        if (Utils.checkCollision(this.car, this.rock)) {
 
-           this.score = 0;
+               console.log("Biem");
+               this.rock.setSpeed(5);
+               this.car.setSpeed(0);
 
-           this.endGame();
+               this.score = 0;
+
+               this.endGame();
         }
 
         requestAnimationFrame(() => this.gameLoop());
